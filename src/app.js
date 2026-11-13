@@ -12,7 +12,7 @@ function createApp() {
   let nextId = 3;
 
   app.get('/health', (req, res) => {
-    res.json({ status: 'down' });
+    res.json({ status: 'ok' });
   });
 
   app.get('/tasks', (req, res) => {
