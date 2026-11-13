@@ -1,0 +1,31 @@
+name: Config Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      greeting:
+        description: Text to print
+        required: true
+        default: Hello
+
+permissions:
+  contents: read
+
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the input and the variable
+        env:
+          GREETING: ${{ inputs.greeting }}
+          APP_NAME: ${{ vars.APP_NAME }}
+        run: |
+          echo "Input:    $GREETING"
+          echo "Variable: $APP_NAME"
+
+      - name: Use the secret
+        env:
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+        run: |
+          echo "Secret:   $DEMO_SECRET"
+          echo "Length:   ${#DEMO_SECRET}"
